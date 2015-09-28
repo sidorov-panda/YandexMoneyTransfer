@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA17790E1BB842C3001A06F6 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17790D1BB842C3001A06F6 /* API.m */; settings = {ASSET_TAGS = (); }; };
-		FA1779111BB84327001A06F6 /* NetworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1779101BB84327001A06F6 /* NetworkLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FA1779111BB84327001A06F6 /* NetworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1779101BB84327001A06F6 /* NetworkLayer.m */; };
 		FA85AE8C1BB831D0009F35AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE8B1BB831D0009F35AE /* main.m */; };
 		FA85AE8F1BB831D0009F35AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE8E1BB831D0009F35AE /* AppDelegate.m */; };
 		FA85AE921BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE901BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld */; };
