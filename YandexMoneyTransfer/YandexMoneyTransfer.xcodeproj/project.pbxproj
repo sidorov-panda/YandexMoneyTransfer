@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA17790E1BB842C3001A06F6 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17790D1BB842C3001A06F6 /* API.m */; settings = {ASSET_TAGS = (); }; };
+		FA1779111BB84327001A06F6 /* NetworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1779101BB84327001A06F6 /* NetworkLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA85AE8C1BB831D0009F35AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE8B1BB831D0009F35AE /* main.m */; };
 		FA85AE8F1BB831D0009F35AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE8E1BB831D0009F35AE /* AppDelegate.m */; };
 		FA85AE921BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA85AE901BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld */; };
@@ -28,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA17790C1BB842C3001A06F6 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		FA17790D1BB842C3001A06F6 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		FA17790F1BB84327001A06F6 /* NetworkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkLayer.h; sourceTree = "<group>"; };
+		FA1779101BB84327001A06F6 /* NetworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkLayer.m; sourceTree = "<group>"; };
 		FA85AE861BB831D0009F35AE /* YandexMoneyTransfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexMoneyTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85AE8A1BB831D0009F35AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA85AE8B1BB831D0009F35AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +68,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA1779071BB84278001A06F6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA85AE931BB831D0009F35AE /* ViewController.h */,
+				FA85AE941BB831D0009F35AE /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FA1779081BB84287001A06F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FA1779091BB84291001A06F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FA17790A1BB8429E001A06F6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		FA17790B1BB842A5001A06F6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA17790C1BB842C3001A06F6 /* API.h */,
+				FA17790D1BB842C3001A06F6 /* API.m */,
+				FA17790F1BB84327001A06F6 /* NetworkLayer.h */,
+				FA1779101BB84327001A06F6 /* NetworkLayer.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		FA85AE7D1BB831D0009F35AE = {
 			isa = PBXGroup;
 			children = (
@@ -83,10 +130,13 @@
 		FA85AE881BB831D0009F35AE /* YandexMoneyTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				FA17790B1BB842A5001A06F6 /* Network */,
+				FA17790A1BB8429E001A06F6 /* Helpers */,
+				FA1779081BB84287001A06F6 /* Models */,
+				FA1779091BB84291001A06F6 /* Views */,
+				FA1779071BB84278001A06F6 /* Controllers */,
 				FA85AE8D1BB831D0009F35AE /* AppDelegate.h */,
 				FA85AE8E1BB831D0009F35AE /* AppDelegate.m */,
-				FA85AE931BB831D0009F35AE /* ViewController.h */,
-				FA85AE941BB831D0009F35AE /* ViewController.m */,
 				FA85AE961BB831D0009F35AE /* Main.storyboard */,
 				FA85AE991BB831D0009F35AE /* Images.xcassets */,
 				FA85AE9B1BB831D0009F35AE /* LaunchScreen.xib */,
@@ -222,10 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1779111BB84327001A06F6 /* NetworkLayer.m in Sources */,
 				FA85AE8F1BB831D0009F35AE /* AppDelegate.m in Sources */,
 				FA85AE8C1BB831D0009F35AE /* main.m in Sources */,
 				FA85AE951BB831D0009F35AE /* ViewController.m in Sources */,
 				FA85AE921BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld in Sources */,
+				FA17790E1BB842C3001A06F6 /* API.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +474,7 @@
 				FA85AEAE1BB831D0009F35AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA85AEAF1BB831D0009F35AE /* Build configuration list for PBXNativeTarget "YandexMoneyTransferTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +483,7 @@
 				FA85AEB11BB831D0009F35AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
