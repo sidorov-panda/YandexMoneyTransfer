@@ -69,6 +69,8 @@ extern NSURL *NSURLFromAPIMethod(APIMethod method);
 
 @interface APIResponse : NSObject
 
+@property (strong, nonatomic, readonly) NSString *responseString;
+
 + (instancetype)responseWithData:(NSData *)data;
 
 @end

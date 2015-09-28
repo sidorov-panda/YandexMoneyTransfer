@@ -14,6 +14,7 @@ NSString *const APIBaseURLString = @"https://m.money.yandex.ru/";
 NSString *const APIClientIDString = @"3AEF1CAA163CACC9EE006CC306C2BF210C99B8A80AA61A7DAD43C493EFFD7F3E";
 
 static NSString *const APIResponseCodeKey = @"code";
+static NSString *const APIResponseGrantTypeKey = @"grant_type";
 
 
 NSURL *NSURLFromAPIMethod(APIMethod method) {
@@ -79,6 +80,7 @@ NSURL *NSURLFromAPIMethod(APIMethod method) {
     
     NSMutableDictionary *params = [[APIRequest defaultRequest] dictionary].mutableCopy;
     params[APIResponseCodeKey] = code;
+    params[APIResponseGrantTypeKey] = @"authorization_code";
     [[NetworkLayer sharedInstance] performRequestWithURL:NSURLFromAPIMethod(APIMethodToken) method:NetworkLayerMethodPOST parameters:params.copy completion:^(NSData *response, NSError *error) {
         if (!error) {
             APIResponse *resp = [APIResponse responseWithData:response];
@@ -128,7 +130,7 @@ NSURL *NSURLFromAPIMethod(APIMethod method) {
                 id<APIDelegate> delegate = self.delegate;
                 if (delegate) {
                     if ([delegate respondsToSelector:@selector(APIDismissWebView:)]) {
-                        [delegate APIDismissWebView:webView];
+                        //[delegate APIDismissWebView:webView];
                     }
                 }
             }
@@ -185,15 +187,20 @@ static NSString *const APIRequestScopeKey = @"scope";
 
 @end
 
+@interface APIResponse ()
+
+@property (strong, nonatomic, readwrite) NSString *responseString;
+
+@end
 
 
 @implementation APIResponse
 
 + (instancetype)responseWithData:(NSData *)data {
     NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    
-    return [APIResponse new];
+    APIResponse *response = [[APIResponse alloc] init];
+    response.responseString = dataString;
+    return response;
 }
 
 @end

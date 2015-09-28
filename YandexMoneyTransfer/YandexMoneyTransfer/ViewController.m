@@ -139,7 +139,9 @@
 }
 
 - (void)APIDismissWebView:(UIWebView *)webView {
-    [webView removeFromSuperview];
+    if (webView) {
+        [webView removeFromSuperview];
+    }
 }
 
 
