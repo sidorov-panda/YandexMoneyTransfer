@@ -17,6 +17,9 @@
 		FA85AE9A1BB831D0009F35AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85AE991BB831D0009F35AE /* Images.xcassets */; };
 		FA85AE9D1BB831D0009F35AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA85AE9B1BB831D0009F35AE /* LaunchScreen.xib */; };
 		FA85AEA91BB831D0009F35AE /* YandexMoneyTransferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85AEA81BB831D0009F35AE /* YandexMoneyTransferTests.m */; };
+		FA986ABF1BB9319B00D091A7 /* WebView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986ABE1BB9319B00D091A7 /* WebView.m */; settings = {ASSET_TAGS = (); }; };
+		FA986AC21BB938EA00D091A7 /* UIWebView+API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986AC11BB938EA00D091A7 /* UIWebView+API.m */; settings = {ASSET_TAGS = (); }; };
+		FA986AC51BB93A3500D091A7 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986AC41BB93A3500D091A7 /* NSDictionary+UrlEncoding.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,12 @@
 		FA85AEA21BB831D0009F35AE /* YandexMoneyTransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YandexMoneyTransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85AEA71BB831D0009F35AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA85AEA81BB831D0009F35AE /* YandexMoneyTransferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YandexMoneyTransferTests.m; sourceTree = "<group>"; };
+		FA986ABD1BB9319B00D091A7 /* WebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebView.h; sourceTree = "<group>"; };
+		FA986ABE1BB9319B00D091A7 /* WebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebView.m; sourceTree = "<group>"; };
+		FA986AC01BB938EA00D091A7 /* UIWebView+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+API.h"; sourceTree = "<group>"; };
+		FA986AC11BB938EA00D091A7 /* UIWebView+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+API.m"; sourceTree = "<group>"; };
+		FA986AC31BB93A3500D091A7 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
+		FA986AC41BB93A3500D091A7 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +82,8 @@
 			children = (
 				FA85AE931BB831D0009F35AE /* ViewController.h */,
 				FA85AE941BB831D0009F35AE /* ViewController.m */,
+				FA986ABD1BB9319B00D091A7 /* WebView.h */,
+				FA986ABE1BB9319B00D091A7 /* WebView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -94,6 +105,10 @@
 		FA17790A1BB8429E001A06F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FA986AC01BB938EA00D091A7 /* UIWebView+API.h */,
+				FA986AC11BB938EA00D091A7 /* UIWebView+API.m */,
+				FA986AC31BB93A3500D091A7 /* NSDictionary+UrlEncoding.h */,
+				FA986AC41BB93A3500D091A7 /* NSDictionary+UrlEncoding.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -272,11 +287,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA986AC51BB93A3500D091A7 /* NSDictionary+UrlEncoding.m in Sources */,
+				FA986ABF1BB9319B00D091A7 /* WebView.m in Sources */,
 				FA1779111BB84327001A06F6 /* NetworkLayer.m in Sources */,
 				FA85AE8F1BB831D0009F35AE /* AppDelegate.m in Sources */,
 				FA85AE8C1BB831D0009F35AE /* main.m in Sources */,
 				FA85AE951BB831D0009F35AE /* ViewController.m in Sources */,
 				FA85AE921BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld in Sources */,
+				FA986AC21BB938EA00D091A7 /* UIWebView+API.m in Sources */,
 				FA17790E1BB842C3001A06F6 /* API.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

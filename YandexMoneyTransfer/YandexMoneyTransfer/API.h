@@ -8,17 +8,42 @@
 
 #import <Foundation/Foundation.h>
 
-@interface API : NSObject
+@class UIWebView;
 
-+ (void)autorizeWithSomething;
+//API Methods
+typedef NS_ENUM(NSUInteger, APIMethod) {
+    APIMethodAuthorize,
+};
+
+extern NSString *const APIBaseURLString;
+extern NSString *const APIClientIDString;
+extern NSURL *NSURLFromAPIMethod(APIMethod method);
+
+
+@protocol APIDelegate <NSObject>
+
+- (void)APINeedsToPresentAuthorizationWebView:(UIWebView *)webView;
 
 
 
 @end
 
 
-@interface APIRequest : NSObject
+@interface API : NSObject
 
+@property (weak, nonatomic) id<APIDelegate> delegate;
+
++ (instancetype)sharedInstance;
+
+- (void)autorizeWithSomething;
+
+
+@end
+
+
+
+
+@interface APIRequest : NSObject
 
 @property (copy, nonatomic) NSString *clientId;
 
@@ -31,5 +56,16 @@
 
 - (instancetype)initWithClientId:(NSString *)clientId responseType:(NSString *)responseType redirectURI:(NSString *)redirectURI scope:(NSString *)scope;
 
++ (instancetype)defaultRequest;
+
+- (NSDictionary *)dictionary;
+
+
+@end
+
+
+@interface APIResponse : NSObject
+
++ (instancetype)responseWithData:(NSData *)data;
 
 @end

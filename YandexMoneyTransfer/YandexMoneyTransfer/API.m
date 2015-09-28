@@ -8,59 +8,111 @@
 
 #import "API.h"
 #import "NetworkLayer.h"
+#import "UIWebView+API.h"
 
-static NSString *const ApiBaseURLString = @"https://m.money.yandex.ru/";
+NSString *const APIBaseURLString = @"https://m.money.yandex.ru/";
+NSString *const APIClientIDString = @"3AEF1CAA163CACC9EE006CC306C2BF210C99B8A80AA61A7DAD43C493EFFD7F3E";
+
+
+
+NSURL *NSURLFromAPIMethod(APIMethod method) {
+    NSString *methodURLString = @"";
+    switch (method) {
+        case APIMethodAuthorize:
+            methodURLString = @"oauth/authorize/";
+            break;
+            
+        default:
+            return nil;
+    }
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", APIBaseURLString, methodURLString]];
+};
+
+
+@interface API ()
+
+@property (nonatomic) BOOL hasToken;
+
+@end
 
 @implementation API
 
++ (instancetype)sharedInstance {
+    static API *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[API alloc] init];
+    });
+    return sharedInstance;
+}
 
-+ (void)autorizeWithSomething {
-
-    const NSString *authURLString = @"oauth/authorize/";
+- (void)autorizeWithSomething {
     
-    [NetworkLayer performRequestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ApiBaseURLString, authURLString]] completion:^(NSData *response, NSError *error) {
-        
+    id<APIDelegate> delegate = self.delegate;
+    if (delegate) {
+        if ([delegate respondsToSelector:@selector(APINeedsToPresentAuthorizationWebView:)]) {
+            [delegate APINeedsToPresentAuthorizationWebView:[UIWebView autorizationWebView]];
+        }
+    }
+    
+    [[NetworkLayer sharedInstance] performRequestWithURL:NSURLFromAPIMethod(APIMethodAuthorize) method:NetworkLayerMethodPOST parameters:[[APIRequest defaultRequest] dictionary] completion:^(NSData *response, NSError *error) {
+        if (!error) {
+            [APIResponse responseWithData:response];
+        }
     }];
-    
-
 }
 
 
 @end
+
+
+static NSString *const APIRequestClientIdKey = @"client_id";
+static NSString *const APIRequestResponseTypeKey = @"response_type";
+static NSString *const APIRequestRedirectURIKey = @"redirect_uri";
+static NSString *const APIRequestScopeKey = @"scope";
 
 
 @implementation APIRequest
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-    
-    }
-    return self;
-}
-
+#pragma mark - Initializers
 
 - (instancetype)initWithClientId:(NSString *)clientId responseType:(NSString *)responseType redirectURI:(NSString *)redirectURI scope:(NSString *)scope {
     self = [self init];
     if (self) {
-    
+        self.clientId = clientId;
+        self.responseType = responseType;
+        self.redirectURI = redirectURI;
+        self.scope = scope;
     }
     return self;
 }
 
++ (instancetype)defaultRequest {
+    return [[APIRequest alloc] initWithClientId:APIClientIDString responseType:@"code" redirectURI:@"http://yandex.ru" scope:@"account-info"];
+}
+
+#pragma mark Methods
+
+- (NSDictionary *)dictionary {
+    return @{APIRequestClientIdKey : self.clientId,
+             APIRequestResponseTypeKey : self.responseType,
+             APIRequestRedirectURIKey : self.redirectURI,
+             APIRequestScopeKey : self.scope,
+             };
+}
+
+
 @end
 
 
-
-
-
-@interface APIResponse : NSObject
-
-@end
 
 @implementation APIResponse
 
-
++ (instancetype)responseWithData:(NSData *)data {
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    
+    return [APIResponse new];
+}
 
 @end

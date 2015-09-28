@@ -25,7 +25,9 @@ extern NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method);
 
 @interface NetworkLayer : NSObject
 
-+ (void)performRequestWithURL:(NSURL *)url parameters:(NSDictionary *)params completion:(void (^)(NSData *response, NSError *error))completion;
++ (instancetype)sharedInstance;
+
+- (void)performRequestWithURL:(NSURL *)url method:(NetworkLayerMethod)method parameters:(NSDictionary *)params completion:(void (^)(NSData *response, NSError *error))completion;
 
 
 

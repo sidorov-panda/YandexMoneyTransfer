@@ -23,12 +23,29 @@ NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method) {
     }
 };
 
+typedef NS_ENUM(NSUInteger, NetworkLayerError) {
+    NetworkLayerErrorTransport = 1,
+    //more errors here
+};
+
+static NSString *const NetworkLayerErrorDomain = @"NetworkLayerErrorDomain";
+
 @interface NetworkLayer () <NSURLSessionDelegate>
 
 @end
 
 
 @implementation NetworkLayer
+
+
++ (instancetype)sharedInstance {
+    static NetworkLayer *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[NetworkLayer alloc] init];
+    });
+    return sharedInstance;
+}
 
 
 - (instancetype)init {
@@ -38,12 +55,12 @@ NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method) {
 }
 
 
-+ (void)performRequestWithURL:(NSURL *)url method:(NetworkLayerMethod)method parameters:(NSDictionary *)params completion:(void (^)(NSData *response, NSError *error))completion {
+- (void)performRequestWithURL:(NSURL *)url method:(NetworkLayerMethod)method parameters:(NSDictionary *)params completion:(void (^)(NSData *response, NSError *error))completion {
 
     NSError *error;
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:[NetworkLayer sharedInstance] delegateQueue:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
@@ -57,12 +74,13 @@ NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method) {
     
     
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
+        if (error) {
+            completion(data, [NSError errorWithDomain:NetworkLayerErrorDomain code:NetworkLayerErrorTransport userInfo:@{}]);
+            return;
+        }
+        completion(data, nil);
     }];
-    
     [postDataTask resume];
-    
-    
 }
 
 
