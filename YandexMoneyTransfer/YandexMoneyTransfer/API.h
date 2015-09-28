@@ -13,6 +13,7 @@
 //API Methods
 typedef NS_ENUM(NSUInteger, APIMethod) {
     APIMethodAuthorize,
+    APIMethodToken,
 };
 
 extern NSString *const APIBaseURLString;
@@ -23,6 +24,8 @@ extern NSURL *NSURLFromAPIMethod(APIMethod method);
 @protocol APIDelegate <NSObject>
 
 - (void)APINeedsToPresentAuthorizationWebView:(UIWebView *)webView;
+
+- (void)APIDismissWebView:(UIWebView *)webView;
 
 
 

@@ -114,38 +114,11 @@
     
 }
 
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSLog(@"request %@", request.URL);
-    NSLog(@"request %@", request.URL.query);
-    
-    NSURLComponents *components = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:YES];
-    
-    [components.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[NSURLQueryItem class]]) {
-            if ([(NSURLQueryItem *)obj name]) {
-            }
-        }
-    }];
-    
-    return YES;
-}
-
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
-}
-
 
 #pragma mark APIDelegate
 
 - (void)APINeedsToPresentAuthorizationWebView:(UIWebView *)webView {
     webView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
-    
-    webView.delegate = self;
-
     [self.view insertSubview:webView aboveSubview:self.scrollView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[webView]-0-|"
@@ -163,6 +136,10 @@
      ];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:webView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:webView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
+}
+
+- (void)APIDismissWebView:(UIWebView *)webView {
+    [webView removeFromSuperview];
 }
 
 

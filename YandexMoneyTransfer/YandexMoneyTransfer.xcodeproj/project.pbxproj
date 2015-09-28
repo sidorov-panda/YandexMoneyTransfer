@@ -20,6 +20,7 @@
 		FA986ABF1BB9319B00D091A7 /* WebView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986ABE1BB9319B00D091A7 /* WebView.m */; settings = {ASSET_TAGS = (); }; };
 		FA986AC21BB938EA00D091A7 /* UIWebView+API.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986AC11BB938EA00D091A7 /* UIWebView+API.m */; settings = {ASSET_TAGS = (); }; };
 		FA986AC51BB93A3500D091A7 /* NSDictionary+UrlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986AC41BB93A3500D091A7 /* NSDictionary+UrlEncoding.m */; settings = {ASSET_TAGS = (); }; };
+		FA986AC91BB988A600D091A7 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FA986AC81BB988A600D091A7 /* Keychain.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		FA986AC11BB938EA00D091A7 /* UIWebView+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+API.m"; sourceTree = "<group>"; };
 		FA986AC31BB93A3500D091A7 /* NSDictionary+UrlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+UrlEncoding.h"; sourceTree = "<group>"; };
 		FA986AC41BB93A3500D091A7 /* NSDictionary+UrlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+UrlEncoding.m"; sourceTree = "<group>"; };
+		FA986AC71BB988A600D091A7 /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
+		FA986AC81BB988A600D091A7 /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 		FA85AE881BB831D0009F35AE /* YandexMoneyTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				FA986AC61BB987E100D091A7 /* Storage */,
 				FA17790B1BB842A5001A06F6 /* Network */,
 				FA17790A1BB8429E001A06F6 /* Helpers */,
 				FA1779081BB84287001A06F6 /* Models */,
@@ -185,6 +189,15 @@
 				FA85AEA71BB831D0009F35AE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA986AC61BB987E100D091A7 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				FA986AC71BB988A600D091A7 /* Keychain.h */,
+				FA986AC81BB988A600D091A7 /* Keychain.m */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +309,7 @@
 				FA85AE921BB831D0009F35AE /* YandexMoneyTransfer.xcdatamodeld in Sources */,
 				FA986AC21BB938EA00D091A7 /* UIWebView+API.m in Sources */,
 				FA17790E1BB842C3001A06F6 /* API.m in Sources */,
+				FA986AC91BB988A600D091A7 /* Keychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
