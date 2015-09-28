@@ -29,6 +29,6 @@ extern NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method);
 
 - (void)performRequestWithURL:(NSURL *)url method:(NetworkLayerMethod)method parameters:(NSDictionary *)params completion:(void (^)(NSData *response, NSError *error))completion;
 
-
+- (void)setToken:(NSString *)token;
 
 @end

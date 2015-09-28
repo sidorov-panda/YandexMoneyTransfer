@@ -14,6 +14,8 @@
 typedef NS_ENUM(NSUInteger, APIMethod) {
     APIMethodAuthorize,
     APIMethodToken,
+    APIMethodRequestPayment,
+    APIMethodProcessPayment
 };
 
 extern NSString *const APIBaseURLString;
@@ -38,7 +40,11 @@ extern NSURL *NSURLFromAPIMethod(APIMethod method);
 
 + (instancetype)sharedInstance;
 
-- (void)autorizeWithSomething;
+- (void)requestTemporaryToken;
+
+- (void)requestPaymentToRecipient:(NSString *)recipient amount:(double)amount comment:(NSString *)comment codepro:(NSString *)codepro expirePeriod:(NSInteger)days completion:(void (^)(NSNumber *requestId, NSError *error))completion;
+
+- (void)processPaymentWithRequestId:(NSNumber *)requestId moneySource:(NSString *)moneySource completion:(void (^)(BOOL succeed))completion;
 
 
 @end
@@ -55,7 +61,6 @@ extern NSURL *NSURLFromAPIMethod(APIMethod method);
 @property (copy, nonatomic) NSString *redirectURI;
 
 @property (copy, nonatomic) NSString *scope;
-
 
 - (instancetype)initWithClientId:(NSString *)clientId responseType:(NSString *)responseType redirectURI:(NSString *)redirectURI scope:(NSString *)scope;
 

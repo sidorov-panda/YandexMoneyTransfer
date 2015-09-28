@@ -7,6 +7,7 @@
 //
 
 #import "NetworkLayer.h"
+#import "NSDictionary+UrlEncoding.h"
 
 
 NSString *NSStringFromNetworkLayerMethod(NetworkLayerMethod method) {
@@ -31,6 +32,8 @@ typedef NS_ENUM(NSUInteger, NetworkLayerError) {
 static NSString *const NetworkLayerErrorDomain = @"NetworkLayerErrorDomain";
 
 @interface NetworkLayer () <NSURLSessionDelegate>
+
+@property (strong, nonatomic) NSString *token;
 
 @end
 
@@ -65,13 +68,18 @@ static NSString *const NetworkLayerErrorDomain = @"NetworkLayerErrorDomain";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    [request setHTTPMethod:NSStringFromNetworkLayerMethod(method)];
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
-    [request setHTTPBody:postData];
+    if (self.token) {
+        [request addValue:[NSString stringWithFormat:@"Bearer %@", self.token] forHTTPHeaderField:@"Authorization"];
+    }
     
+    [request setHTTPMethod:NSStringFromNetworkLayerMethod(method)];
+//    [request setHTTPShouldHandleCookies:NO];
+//    [request setHTTPShouldUsePipelining:NO];
+//    NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    [request setHTTPBody:[[params urlEncodedString] dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
@@ -83,6 +91,9 @@ static NSString *const NetworkLayerErrorDomain = @"NetworkLayerErrorDomain";
     [postDataTask resume];
 }
 
+- (void)setToken:(NSString *)token {
+    _token = token;
+}
 
 
 
